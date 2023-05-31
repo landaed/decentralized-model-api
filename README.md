@@ -56,6 +56,3 @@ You're done!
 ## Verification
 
 To verify that the Kubernetes setup is ready, run the command `kubectl get pods`.
-```
----
-You can copy the above text and paste it into your README.md file. The triple backticks (```) denote code blocks, and the text immediately following the opening backticks specifies the language for syntax highlighting. The hash symbols (#) denote headings, with the number of hashes indicating the level of the heading (e.g., `#` for a top-level heading, `##` for a second-level heading, etc.). The single asterisks (*) denote list items, and the double asterisks (**) denote bold text.
