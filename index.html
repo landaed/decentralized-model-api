@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Depth Estimation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Depth Estimation</h1>
+
+    <input type="text" id="image-url" placeholder="Enter image URL here" size="50">
+    <button id="submit">Submit</button>
+
+    <h2>Input Image:</h2>
+    <img id="input-image" src="" alt="Input image will be shown here" width="500" height="auto">
+
+    <h2>Depth Map:</h2>
+    <canvas id="depth-map" width="500" height="500"></canvas>
+
+    <script>
+        $('#submit').click(function() {
+            var imageUrl = $('#image-url').val();
+            $('#input-image').attr('src', imageUrl);
+            $.ajax({
+                url: 'http://localhost',
+                type: 'post',
+                contentType: 'application/json',
+                headers: {
+                    'Authorization': 'Bearer secret-token-1'
+                },
+                data: JSON.stringify({
+                    'image_url': imageUrl
+                }),
+                success: function(data) {
+                    var canvas = document.getElementById('depth-map');
+                    // Update canvas size to match the size of the depth map
+                    canvas.width = data[0].length;
+                    canvas.height = data.length;
+
+                    var ctx = canvas.getContext('2d');
+                    var imgData = ctx.createImageData(canvas.width, canvas.height);
+                    for (var i = 0; i < data.length; i++) {
+                        for (var j = 0; j < data[i].length; j++) {
+                            var pixelIndex = (i * data[i].length + j) * 4;
+                            imgData.data[pixelIndex] = data[i][j];
+                            imgData.data[pixelIndex + 1] = data[i][j];
+                            imgData.data[pixelIndex + 2] = data[i][j];
+                            imgData.data[pixelIndex + 3] = 255;
+                        }
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
