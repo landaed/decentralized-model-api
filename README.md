@@ -45,8 +45,6 @@ Follow these steps to set up and run the project:
 
    Please note that you may need to wait for a while (around 30 minutes) for everything to download.
 
-4. **Run `main.py`**. Run the command `python main.py`.
-
 5. **Open `index.html`**.
 
 6. **Test the application**. Paste an image URL into the textbox in the opened webpage and submit it.
