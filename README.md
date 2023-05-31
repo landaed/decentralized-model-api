@@ -1,7 +1,4 @@
 # decentralized-model-api
-
-Sure, here's a README file in Markdown format for your repository:
-
 ---
 ```markdown
 # Decentralized Model API
